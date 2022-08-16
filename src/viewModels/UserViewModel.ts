@@ -1,9 +1,15 @@
+import { NavigateFunction } from "react-router-dom";
 import Address, { AddressValueKeys } from "../entities/address";
 import User, { UserValueKeys } from "../entities/user";
 
 export default class UserViewModel {
   user = new User();
   address = new Address();
+  navigate: NavigateFunction;
+
+  constructor(navigate: NavigateFunction) {
+    this.navigate = navigate;
+  }
 
   get isValid() {
     return (
@@ -30,6 +36,13 @@ export default class UserViewModel {
     }
 
     this.address[e.target.name as AddressValueKeys] = e.target.value;
+  }
+
+  handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!this.isValid) return alert("모든 필드를 입력하세요");
+
+    this.navigate("/other");
   }
 
   changeName() {

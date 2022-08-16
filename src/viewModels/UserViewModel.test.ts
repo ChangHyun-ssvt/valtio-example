@@ -1,11 +1,16 @@
 import React from "react";
 import UserViewModel from "./UserViewModel";
 
+const mockNavigate = jest.fn();
+const mockFormEvent = {
+  preventDefault: jest.fn(),
+} as unknown as React.FormEvent<HTMLFormElement>;
+
 describe("UserViewModel", () => {
   let userViewModel: UserViewModel;
 
   beforeEach(() => {
-    userViewModel = new UserViewModel();
+    userViewModel = new UserViewModel(mockNavigate);
   });
 
   describe("changeName", () => {
@@ -105,6 +110,47 @@ describe("UserViewModel", () => {
 
       // then
       expect(userViewModel.isValid).toBe(true);
+    });
+  });
+
+  describe("handleSubmit", () => {
+    it("필드를 전부 입력하지 않으면 alert을 호출", () => {
+      // given
+      window.alert = jest.fn();
+
+      // when
+      userViewModel.handleSubmit(mockFormEvent);
+
+      // then
+      expect(window.alert).toBeCalledWith("모든 필드를 입력하세요");
+    });
+
+    it("필드를 전부 입력하면 other 페이지로 이동", () => {
+      // given
+      // when
+      userViewModel.handleUserInputChange({
+        target: { name: "username", value: "username" },
+      } as React.ChangeEvent<HTMLInputElement>);
+      userViewModel.handleUserInputChange({
+        target: { name: "password", value: "password" },
+      } as React.ChangeEvent<HTMLInputElement>);
+      userViewModel.handleUserInputChange({
+        target: { name: "email", value: "email" },
+      } as React.ChangeEvent<HTMLInputElement>);
+      userViewModel.handleUserInputChange({
+        target: { name: "companyName", value: "companyName" },
+      } as React.ChangeEvent<HTMLInputElement>);
+      userViewModel.handleUserInputChange({
+        target: { name: "age", value: "15" },
+      } as React.ChangeEvent<HTMLInputElement>);
+      userViewModel.handleAddressInputChange({
+        target: { name: "address", value: "address" },
+      } as React.ChangeEvent<HTMLInputElement>);
+
+      userViewModel.handleSubmit(mockFormEvent);
+
+      // then
+      expect(mockNavigate).toBeCalledWith("/other");
     });
   });
 });

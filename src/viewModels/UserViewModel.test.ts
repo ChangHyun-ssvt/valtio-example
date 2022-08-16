@@ -76,8 +76,6 @@ describe("UserViewModel", () => {
   describe("validation", () => {
     it("필드를 전부 입력하지 않으면 validation을 통과하지 못한다.", () => {
       // given
-      const userViewModel = new UserViewModel();
-
       // when
       // then
       expect(userViewModel.isValid()).toBe(false);

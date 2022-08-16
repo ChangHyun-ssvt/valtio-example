@@ -1,15 +1,18 @@
 import { useRef } from "react";
 import { proxy, useSnapshot } from "valtio";
+import AdultLabel from "./components/AdultLabel";
+import ValidationLabel from "./components/ValidationLabel";
 import { AddressValueKeys } from "./entities/address";
 import { UserValueKeys } from "./entities/user";
 import UserViewModel from "./viewModels/UserViewModel";
 
-function App() {
+export default function App() {
   const viewModel = useRef(proxy(new UserViewModel())).current;
   const state = useSnapshot(viewModel);
 
   console.log(state.user);
   console.log(state.address);
+  console.log(state.isValid());
 
   const handleUserInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     viewModel.user[e.target.name as UserValueKeys] = e.target.value;
@@ -63,10 +66,8 @@ function App() {
         onChange={handleAddressInputChange}
         value={state.address.address ?? ""}
       />
-      <p>{state.user.isAdult() ? "성인입니다." : "어린이입니다."}</p>
-      <p>{state.isValid() ? "validation 성공" : "validation 실패"}</p>
+      <AdultLabel isAdult={state.user.isAdult()} />
+      <ValidationLabel isValid={state.isValid()} />
     </div>
   );
 }
-
-export default App;

@@ -7,12 +7,12 @@ export default class UserViewModel {
 
   isValid() {
     return (
-      this.user.username &&
-      this.user.password &&
-      this.user.email &&
-      this.user.companyName &&
-      this.user.age &&
-      this.address.address
+      Boolean(this.user.username) &&
+      Boolean(this.user.password) &&
+      Boolean(this.user.email) &&
+      Boolean(this.user.companyName) &&
+      Boolean(this.user.age) &&
+      Boolean(this.address.address)
     );
   }
 }

@@ -17,10 +17,18 @@ export default class UserViewModel {
   }
 
   handleUserInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    if (!Object.hasOwn(this.user, e.target.name)) {
+      throw new Error(`User entity has not ${e.target.name} field`);
+    }
+
     this.user[e.target.name as UserValueKeys] = e.target.value;
   }
 
   handleAddressInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    if (!Object.hasOwn(this.address, e.target.name)) {
+      throw new Error(`Address entity has not ${e.target.name} field`);
+    }
+
     this.address[e.target.name as AddressValueKeys] = e.target.value;
   }
 

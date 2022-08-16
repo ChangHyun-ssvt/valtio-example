@@ -19,40 +19,40 @@ export default function App() {
       <input
         type="text"
         name="username"
-        onChange={viewModel.handleUserInputChange.bind(viewModel)}
+        onChange={(e) => viewModel.handleUserInputChange(e)}
         value={state.user.username ?? ""}
       />
       <input
         type="password"
         name="password"
-        onChange={viewModel.handleUserInputChange.bind(viewModel)}
+        onChange={(e) => viewModel.handleUserInputChange(e)}
         value={state.user.password ?? ""}
       />
       <input
         type="text"
         name="email"
-        onChange={viewModel.handleUserInputChange.bind(viewModel)}
+        onChange={(e) => viewModel.handleUserInputChange(e)}
         value={state.user.email ?? ""}
       />
       <input
         type="text"
         name="companyName"
-        onChange={viewModel.handleUserInputChange.bind(viewModel)}
+        onChange={(e) => viewModel.handleUserInputChange(e)}
         value={state.user.companyName ?? ""}
       />
       <input
         type="text"
         name="age"
-        onChange={viewModel.handleUserInputChange.bind(viewModel)}
+        onChange={(e) => viewModel.handleUserInputChange(e)}
         value={state.user.age ?? ""}
       />
       <input
         type="text"
         name="address"
-        onChange={viewModel.handleAddressInputChange.bind(viewModel)}
+        onChange={(e) => viewModel.handleAddressInputChange(e)}
         value={state.address.address ?? ""}
       />
-      <button onClick={viewModel.changeName.bind(viewModel)}>changeName</button>
+      <button onClick={() => viewModel.changeName()}>changeName</button>
       <AdultLabel isAdult={state.user.isAdult()} />
       <ValidationLabel isValid={state.isValid()} />
     </div>

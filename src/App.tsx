@@ -2,25 +2,11 @@ import { useRef } from "react";
 import { proxy, useSnapshot } from "valtio";
 import AdultLabel from "./components/AdultLabel";
 import ValidationLabel from "./components/ValidationLabel";
-import { AddressValueKeys } from "./entities/address";
-import { UserValueKeys } from "./entities/user";
 import UserViewModel from "./viewModels/UserViewModel";
 
 export default function App() {
   const viewModel = useRef(proxy(new UserViewModel())).current;
   const state = useSnapshot(viewModel);
-
-  console.log(state.user);
-  console.log(state.address);
-  console.log(state.isValid());
-
-  const handleUserInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    viewModel.user[e.target.name as UserValueKeys] = e.target.value;
-  };
-
-  const handleAddressInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    viewModel.address[e.target.name as AddressValueKeys] = e.target.value;
-  };
 
   return (
     <div
@@ -33,39 +19,40 @@ export default function App() {
       <input
         type="text"
         name="username"
-        onChange={handleUserInputChange}
+        onChange={viewModel.handleUserInputChange.bind(viewModel)}
         value={state.user.username ?? ""}
       />
       <input
         type="password"
         name="password"
-        onChange={handleUserInputChange}
+        onChange={viewModel.handleUserInputChange.bind(viewModel)}
         value={state.user.password ?? ""}
       />
       <input
         type="text"
         name="email"
-        onChange={handleUserInputChange}
+        onChange={viewModel.handleUserInputChange.bind(viewModel)}
         value={state.user.email ?? ""}
       />
       <input
         type="text"
         name="companyName"
-        onChange={handleUserInputChange}
+        onChange={viewModel.handleUserInputChange.bind(viewModel)}
         value={state.user.companyName ?? ""}
       />
       <input
         type="text"
         name="age"
-        onChange={handleUserInputChange}
+        onChange={viewModel.handleUserInputChange.bind(viewModel)}
         value={state.user.age ?? ""}
       />
       <input
         type="text"
         name="address"
-        onChange={handleAddressInputChange}
+        onChange={viewModel.handleAddressInputChange.bind(viewModel)}
         value={state.address.address ?? ""}
       />
+      <button onClick={viewModel.changeName.bind(viewModel)}>changeName</button>
       <AdultLabel isAdult={state.user.isAdult()} />
       <ValidationLabel isValid={state.isValid()} />
     </div>

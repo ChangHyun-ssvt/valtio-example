@@ -53,8 +53,8 @@ export default function App() {
         value={state.address.address ?? ""}
       />
       <button onClick={() => viewModel.changeName()}>changeName</button>
-      <AdultLabel isAdult={state.user.isAdult()} />
-      <ValidationLabel isValid={state.isValid()} />
+      <AdultLabel isAdult={state.user.isAdult} />
+      <ValidationLabel isValid={state.isValid} />
     </div>
   );
 }

@@ -14,7 +14,7 @@ describe("User entity", () => {
 
       // when
       // then
-      expect(user.isAdult()).toBe(true);
+      expect(user.isAdult).toBe(true);
     });
 
     it("나이가 20세 미만이면 false를 반환한다.", () => {
@@ -23,7 +23,7 @@ describe("User entity", () => {
 
       // when
       // then
-      expect(user.isAdult()).toBe(false);
+      expect(user.isAdult).toBe(false);
     });
   });
 

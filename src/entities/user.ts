@@ -5,7 +5,7 @@ export default class User {
   companyName: string | null = null;
   age: string | null = null;
 
-  isAdult() {
+  get isAdult() {
     return Number(this.age) >= 20;
   }
 

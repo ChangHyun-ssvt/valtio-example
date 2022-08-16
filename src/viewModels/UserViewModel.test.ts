@@ -78,7 +78,7 @@ describe("UserViewModel", () => {
       // given
       // when
       // then
-      expect(userViewModel.isValid()).toBe(false);
+      expect(userViewModel.isValid).toBe(false);
     });
 
     it("모든 필드를 입력하면 validation을 통과해야 한다.", () => {
@@ -104,7 +104,7 @@ describe("UserViewModel", () => {
       } as React.ChangeEvent<HTMLInputElement>);
 
       // then
-      expect(userViewModel.isValid()).toBe(true);
+      expect(userViewModel.isValid).toBe(true);
     });
   });
 });

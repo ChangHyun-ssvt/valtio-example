@@ -5,7 +5,7 @@ export default class UserViewModel {
   user = new User();
   address = new Address();
 
-  isValid() {
+  get isValid() {
     return (
       Boolean(this.user.username) &&
       Boolean(this.user.password) &&

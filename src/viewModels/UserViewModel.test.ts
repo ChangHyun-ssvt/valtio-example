@@ -1,9 +1,9 @@
 import React from "react";
 import UserViewModel from "./UserViewModel";
 
-const mockNavigate = jest.fn();
+const mockNavigate = vi.fn();
 const mockFormEvent = {
-  preventDefault: jest.fn(),
+  preventDefault: vi.fn(),
 } as unknown as React.FormEvent<HTMLFormElement>;
 
 describe("UserViewModel", () => {
@@ -116,7 +116,7 @@ describe("UserViewModel", () => {
   describe("handleSubmit", () => {
     it("필드를 전부 입력하지 않으면 alert을 호출", () => {
       // given
-      window.alert = jest.fn();
+      window.alert = vi.fn();
 
       // when
       userViewModel.handleSubmit(mockFormEvent);

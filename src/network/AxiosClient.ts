@@ -1,6 +1,8 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import { singleton } from "tsyringe";
 import HttpRepository from "../repositories/HttpRepository";
 
+@singleton()
 export default class AxiosClient implements HttpRepository {
   instance: AxiosInstance;
 

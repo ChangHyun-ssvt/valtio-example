@@ -1,13 +1,16 @@
+import "reflect-metadata";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import OtherView from "./views/OtherView";
+import PostsView from "./views/PostsView";
 import UserView from "./views/UserView";
+
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<UserView />} />
-        <Route path="/other" element={<OtherView />} />
+        <Route path="/posts" element={<PostsView />} />
       </Routes>
     </BrowserRouter>
   );
